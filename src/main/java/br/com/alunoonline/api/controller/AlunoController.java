@@ -1,9 +1,10 @@
 package br.com.alunoonline.api.controller;
 
+import br.com.alunoonline.api.model.Aluno;
 import br.com.alunoonline.api.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/aluno")
@@ -12,7 +13,9 @@ public class AlunoController {
     @Autowired
     AlunoService alunoService;
 
-    public void create() {
-
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody Aluno aluno) {
+        alunoService.create(aluno);
     }
 }
